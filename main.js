@@ -1,64 +1,195 @@
-const baseBlanca = 31000;
-const baseTransparente = 34000;
-const ingrediente = 8100;
-const pigmento = 9300;
 
-let menu = prompt("Ingrese el producto que desea comprar: | 1. Base | 2. Ingredientes (10% descuento) | 3. Pigmentos | 4. Salir");
+// const productos = [
+//     {
+//         tipo: "Base",
+//         opciones: [
+//             { nombre: "Blanca", precio: 31000, cantidad: 500 },
+//             { nombre: "Transparente", precio: 34000, cantidad: 500 },
+//         ],
+//     },
+//     {
+//         tipo: "Ingredientes",
+//         opciones: [
+//             { nombre: "Manzanilla", precio: 8100, cantidad: 20 },
+//             { nombre: "Lavanda", precio: 8100, cantidad: 20 },
+//             { nombre: "Menta", precio: 8100, cantidad: 20 },
+//         ],
+//         descuento: 0.1,
+//     },
+//     {
+//         tipo: "Pigmentos",
+//         opciones: [
+//             { nombre: "Rojo", precio: 9300, cantidad: 5 },
+//             { nombre: "Azul", precio: 9300, cantidad: 5 },
+//             { nombre: "Naranja", precio: 9300, cantidad: 5 },
+//         ],
+//     },
+// ];
 
-while (menu !== "4" && menu.toLowerCase() !== "salir") {
-    switch (menu) {
-        case "1":
-        case "base":
-            let base = prompt(
-                "Contamos con bases de color: 1. Blanca: $31.000 (500gr) y 2. Transparente: $34.000 (500gr)  ¿Cuál base deseas?"
-            );
-            if (base === "1" || base.toLowerCase() === "blanca") {
-                let cantidadBase = prompt("¿Cuantas bases deseas?");
-                const valorBase = cantidadBase * baseBlanca;
-                alert("El total de tu compra en bases blancas es: " + valorBase);
-            } else if (base === "2" || base.toLowerCase() === "transparente") {
-                let cantidadBase = prompt("¿Cuantas bases deseas?");
-                const valorBase = cantidadBase * baseTransparente;
-                alert("El total de tu compra en bases transparentes es: " + valorBase);
-            } else {
-                alert("Opción incorrecta");
-            }
-            break;
+// let menu = prompt(
+//     "Ingrese el producto que desea comprar:\n 1. Base\n 2. Ingredientes\n 3. Pigmentos\n 4. Salir"
+// );
 
-        case "2":
-        case "ingredientes":
-            let ingredientes = prompt("Contamos con 1. Manzanilla, 2. Lavanda y 3. Menta, con un valor de $8.100 (20gr) cada uno, ¿qué ingrediente deseas (10% descuento en todo)?");
-            if (ingredientes === ("1") || ingredientes === ("2") || ingredientes === ("3") || ingredientes.toLowerCase() === "manzanilla" || ingredientes.toLowerCase() === "lavanda" || ingredientes.toLowerCase() === "menta") {
-                let cantidadIngredientes = prompt("¿Cuantas unidades deseas?");
-                const valorIngredientes = cantidadIngredientes * ingrediente;
-                const descuentoIngredientes = valorIngredientes * 0.1;
-                const valorFinalIngredientes = valorIngredientes - descuentoIngredientes;
-                alert("El total de tu compra en ingredientes es: " + valorFinalIngredientes);
-            } else {
-                alert("Opción incorrecta");
-            }
-            break;
+// while (menu !== "4" && menu.toLowerCase() !== "salir") {
+//     let seleccion;
+//     if (isNaN(menu)) {
+//         for (let i = 0; i < productos.length; i++) {
+//             if (productos[i].tipo.toLowerCase() === menu.toLowerCase()) {
+//                 seleccion = i;
+//                 break;
+//             }
+//         }
+//     } else {
+//         seleccion = parseInt(menu.toLowerCase()) - 1;
+//     }
 
-        case "3":
-        case "pigmentos":
-            let pigmentos = prompt(
-                "Contamos con pigmentos de color: 1. Rojo, 2. Azul y 3. Naranja con un valor cada uno de $9.300 (5gr). ¿Qué color deseas comprar?"
-            );
-            if (pigmentos === ("1") || pigmentos  === ("2") || pigmentos === ("3") || pigmentos.toLowerCase() === "rojo" || pigmentos.toLowerCase() === "azul" || pigmentos.toLowerCase() === "naranja") {
-                let cantidadPigmento = prompt("¿Cuantos pigmentos deseas?");
-                const valorPigmento = cantidadPigmento * pigmento;
-                alert("El total de tu compra en pigmentos es: " + valorPigmento);
-            } else {
-                alert("Opción incorrecta");
-            }
-            break;
+//     if (seleccion >= 0 && seleccion < productos.length) {
+//         const productoElegido = productos[seleccion];
+//         const nombreProducto = productoElegido.tipo;
 
-        default:
-            alert("Opción incorrecta");
-            break;
+//         let subMenu = `Contamos con ${nombreProducto}:\n`;
+//         for (let i = 0; i < productoElegido.opciones.length; i++) {
+//             const opcion = productoElegido.opciones[i];
+//             subMenu += `${i + 1}. ${opcion.nombre} - $${opcion.precio} (${opcion.cantidad
+//                 }gr)\n`;
+//         }
+
+//         const opcion = prompt(`¿Cuál ${nombreProducto} deseas?\n${subMenu}`);
+
+//         const indiceOpcion = parseInt(opcion) - 1;
+//         if (indiceOpcion >= 0 && indiceOpcion < productoElegido.opciones.length) {
+//             const producto = productoElegido.opciones[indiceOpcion];
+//             if (!isNaN(producto.precio)) {
+//                 const cantidad = parseInt(prompt("¿Cuantas unidades deseas?"));
+//                 let valorTotal = cantidad * producto.precio;
+
+//                 if (productoElegido.descuento) {
+//                     valorTotal *= 1 - productoElegido.descuento;
+//                 }
+
+//                 alert(`Detalles del producto:\n
+//                     Tipo: ${nombreProducto}\n
+//                     Nombre: ${producto.nombre}\n
+//                     Precio por unidad: $${producto.precio}\n
+//                     Cantidad por unidad: ${producto.cantidad} gr\n
+//                     Cantidad deseada: ${cantidad}\n
+//                     Total: $${valorTotal}`);
+//             } else {
+//                 alert("Opción incorrecta");
+//             }
+//         } else {
+//             alert("Opción incorrecta");
+//         }
+//     } else {
+//         alert("Opción incorrecta");
+//     }
+
+//     menu = prompt(
+//         "Ingrese el producto que desea comprar:\n 1. Base\n 2. Ingredientes\n 3. Pigmentos\n 4. Salir"
+//     );
+// }
+
+
+const productos = [
+    {
+        tipo: "Base",
+        opciones: [
+            { nombre: "Blanca", precio: 31000, cantidad: 500 },
+            { nombre: "Transparente", precio: 34000, cantidad: 500 },
+        ],
+    },
+    {
+        tipo: "Ingredientes",
+        opciones: [
+            { nombre: "Manzanilla", precio: 8100, cantidad: 20 },
+            { nombre: "Lavanda", precio: 8100, cantidad: 20 },
+            { nombre: "Menta", precio: 8100, cantidad: 20 },
+        ],
+        descuento: 0.1,
+    },
+    {
+        tipo: "Pigmentos",
+        opciones: [
+            { nombre: "Rojo", precio: 9300, cantidad: 5 },
+            { nombre: "Azul", precio: 9300, cantidad: 5 },
+            { nombre: "Naranja", precio: 9300, cantidad: 5 },
+        ],
+    },
+];
+
+function mostrarProductos() {
+    let opciones = "Ingrese el producto que desea comprar:\n";
+    for (let i = 0; i < productos.length; i++) {
+        opciones += ` ${i + 1}. ${productos[i].tipo}\n`;
+    }
+    opciones += " 4. Salir";
+    return opciones;
+}
+
+function mostrarDetallesProducto(producto) {
+    const { nombre, precio, cantidad } = producto;
+    return `Detalles del producto:
+        Nombre: ${nombre}
+        Precio por unidad: $${precio}
+        Cantidad por unidad: ${cantidad} gr`;
+}
+
+function obtenerProductoPorNombre(nombreProducto) {
+    return productos.find(producto => producto.tipo.toLowerCase() === nombreProducto.toLowerCase());
+}
+
+let menu;
+do {
+    menu = prompt(mostrarProductos());
+
+    if (menu === "4" || menu.toLowerCase() === "salir") {
+        break;
     }
 
-    menu = prompt(
-        "Ingrese el producto que desea comprar: | 1. Base | 2. Ingredientes (10% descuento) | 3. Pigmentos | 4. Salir"
-    );
-}
+    let seleccion;
+
+    if (!isNaN(menu)) {
+        seleccion = parseInt(menu) - 1;
+    } else {
+        const productoElegido = obtenerProductoPorNombre(menu);
+        if (productoElegido) {
+            seleccion = productos.indexOf(productoElegido);
+        }
+    }
+
+    if (seleccion >= 0 && seleccion < productos.length) {
+        const productoElegido = productos[seleccion];
+        const nombreProducto = productoElegido.tipo;
+
+        let subMenu = `Contamos con ${nombreProducto}:\n`;
+        for (let i = 0; i < productoElegido.opciones.length; i++) {
+            const opcion = productoElegido.opciones[i];
+            subMenu += `${i + 1}. ${opcion.nombre} - $${opcion.precio} (${opcion.cantidad}gr)\n`;
+        }
+
+        const opcion = prompt(`¿Cuál ${nombreProducto} deseas?\n${subMenu}`);
+        const indiceOpcion = parseInt(opcion) - 1;
+
+        if (indiceOpcion >= 0 && indiceOpcion < productoElegido.opciones.length) {
+            const producto = productoElegido.opciones[indiceOpcion];
+            if (!isNaN(producto.precio)) {
+                const cantidad = parseInt(prompt("¿Cuantas unidades deseas?"));
+                let valorTotal = cantidad * producto.precio;
+
+                if (productoElegido.descuento) {
+                    valorTotal *= 1 - productoElegido.descuento;
+                }
+
+                alert(mostrarDetallesProducto(producto) + `
+                    Cantidad deseada: ${cantidad}
+                    Total: $${valorTotal}`);
+            } else {
+                alert("Opción incorrecta");
+            }
+        } else {
+            alert("Opción incorrecta");
+        }
+    } else {
+        alert("Opción incorrecta");
+    }
+} while (menu !== "4" || menu.toLowerCase() !== "salir");
